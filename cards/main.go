@@ -15,5 +15,11 @@ func main() {
 	// 	fmt.Println(card)
 	// }
 	// The "print" method now comes from "deck.go"
-	cards.print()
+	// cards.print()
+
+	newDeck := createDeck()
+
+	hand, remainingDeck := deal(newDeck, 5)
+	hand.print()
+	remainingDeck.print()
 }

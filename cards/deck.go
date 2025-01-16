@@ -12,3 +12,21 @@ func (d deck) print() {
 		fmt.Println(i, card)
 	}
 }
+
+func createDeck() deck {
+	cards := deck{}
+	cardSuits := deck{"Spades", "Diamonds", "Hearts", "Clubs"}
+	cardValues := deck{"Ace", "Two", "Three", "Four", "King", "Queen", "Joker"}
+
+	for _, suit := range cardSuits {
+		for _, value := range cardValues {
+			cards = append(cards, value+" of "+suit)
+		}
+	}
+
+	return cards
+}
+
+func deal(d deck, handSize int) (deck, deck) {
+	return d[:handSize], d[handSize:]
+}
