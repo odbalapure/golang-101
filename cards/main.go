@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 func generateCard() string {
 	return "Ace of spades"
 }
@@ -11,6 +13,7 @@ func main() {
 	cards := deck{"Ace of diamonds", generateCard()}
 	cards = append(cards, "King of hearts")
 
+	// For loop
 	// for _, card := range cards {
 	// 	fmt.Println(card)
 	// }
@@ -19,7 +22,16 @@ func main() {
 
 	newDeck := createDeck()
 
-	hand, remainingDeck := deal(newDeck, 5)
-	hand.print()
-	remainingDeck.print()
+	// Getting multiple values in "return" from a function
+	// hand, remainingDeck := deal(newDeck, 5)
+	// hand.print()
+	// remainingDeck.print()
+
+	fmt.Println(newDeck.toString())
+
+	// Write to file
+	newDeck.saveToFile("deck.txt")
+
+	// Read from file
+	newDeckFromFile("deck.txt").print()
 }

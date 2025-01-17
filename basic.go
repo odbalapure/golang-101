@@ -32,6 +32,10 @@ func main() {
 
 	color := color("Red")
 	fmt.Println(color.getColor("is a cool color!"))
+
+	// 5. Bytes
+	greetings := "Hello world!"
+	fmt.Println([]byte(greetings))
 }
 
 func generateCard() string {
