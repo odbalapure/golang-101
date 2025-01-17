@@ -29,8 +29,18 @@ func main() {
 	for _, card := range cards {
 		fmt.Println(card)
 	}
+
+	color := color("Red")
+	fmt.Println(color.getColor("is a cool color!"))
 }
 
 func generateCard() string {
 	return "Ace of spades"
+}
+
+// 4. Creating types
+type color string
+
+func (c color) getColor(description string) string {
+	return string(c) + " " + description
 }
