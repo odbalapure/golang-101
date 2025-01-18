@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"math/rand"
 	"os"
 	"strings"
 )
@@ -13,7 +14,7 @@ type deck []string
 // This is similar to "this" keyword in Javascript
 func (d deck) print() {
 	for i, card := range d {
-		fmt.Println(i, card)
+		fmt.Println(i+1, card)
 	}
 }
 
@@ -51,5 +52,19 @@ func newDeckFromFile(filename string) deck {
 		os.Exit(1)
 	}
 
+	// Alternate syntax
+	// s := strings.Split(string(bytes), ",")
+	// return deck(s)
+
 	return strings.Split(string(bytes), ",")
+}
+
+func (d deck) shuffle() deck {
+	for i := range d {
+		newPosition := rand.Intn(len(d) - 1)
+
+		d[i], d[newPosition] = d[newPosition], d[i]
+	}
+
+	return d
 }

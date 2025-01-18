@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 func generateCard() string {
 	return "Ace of spades"
 }
@@ -10,8 +8,8 @@ func main() {
 	// cards := []string{"Ace of diamonds", generateCard()}
 	// Using a custom type
 	// NOTE: Make sure to run "main.go" & "deck.go" together
-	cards := deck{"Ace of diamonds", generateCard()}
-	cards = append(cards, "King of hearts")
+	// cards := deck{"Ace of diamonds", generateCard()}
+	// cards = append(cards, "King of hearts")
 
 	// For loop
 	// for _, card := range cards {
@@ -27,11 +25,13 @@ func main() {
 	// hand.print()
 	// remainingDeck.print()
 
-	fmt.Println(newDeck.toString())
+	// fmt.Println(newDeck.toString())
 
 	// Write to file
-	newDeck.saveToFile("deck.txt")
+	// newDeck.saveToFile("deck.txt")
 
 	// Read from file
-	newDeckFromFile("deck.txt").print()
+	// newDeckFromFile("deck.txt").print()
+
+	newDeck.shuffle().print()
 }
