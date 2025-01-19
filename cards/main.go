@@ -1,8 +1,8 @@
 package main
 
-func generateCard() string {
-	return "Ace of spades"
-}
+// func generateCard() string {
+// 	return "Ace of spades"
+// }
 
 func main() {
 	// cards := []string{"Ace of diamonds", generateCard()}
