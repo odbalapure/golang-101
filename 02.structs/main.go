@@ -14,7 +14,7 @@ type person struct {
 	lastName  string
 	age       int
 	// contact   contact
-	// No need for explicitly name the type
+	// No need to explicitly name the type
 	contact
 }
 
@@ -30,7 +30,7 @@ func (p *person) updatName(name string) {
 }
 
 func main() {
-	// 1. intializing a struct
+	// 1. intializing a "struct"
 	// om := person{firstName: "Om", lastName: "Balapure", age: 29}
 	// Relying upon the order of definition
 	om := person{
@@ -45,14 +45,20 @@ func main() {
 	// fmt.Printf("%v %v is %v years old", om.firstName, om.lastName, om.age)
 	// fmt.Printf("%+v", om)
 
-	// 2. Another way of intializing struct
+	// 2. Another way of intializing "struct"
 	// var hari person
 	// hari.firstName = "Harish"
 	// hari.lastName = "Balapure"
 	// hari.age = 32
 
+	// 3. Using pointers with "struct"
 	// Gives memory address of the value, the variable is pointing at
-	omPointer := &om
-	omPointer.updatName("Omi")
-	omPointer.print()
+	// NOTE: Go is a "pass by value" language, which *always* copies arguments that are passed to a function
+
+	// omPointer := &om
+	// omPointer.updatName("Omi")
+	// omPointer.print()
+	// NOTE: A shorter way to do this would be
+	om.updatName("Omi")
+	om.print()
 }

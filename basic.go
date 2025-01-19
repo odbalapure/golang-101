@@ -8,6 +8,11 @@ import "fmt"
 // var nums = []int{1, 2, 3}
 // var strs = []string{"Om", "Hari"}
 
+type location struct {
+	lat  float64
+	long float64
+}
+
 func main() {
 	// 1. Creating variables
 	// var card string = "Ace of spades"
@@ -36,6 +41,24 @@ func main() {
 	// 5. Bytes
 	greetings := "Hello world!"
 	fmt.Println([]byte(greetings))
+
+	// 6. Slices are reference type, they use pointers under the hood
+	slice := []string{"Hi", "there", "Om"}
+	updateSlice(slice)
+	fmt.Println(slice)
+
+	// 7. Structs and pointers
+	newYork := location{
+		lat:  40.73,
+		long: -73.93,
+	}
+	newYork.changeLatitude()
+
+	fmt.Printf("%+v", newYork)
+}
+
+func updateSlice(slice []string) {
+	slice[2] = "Harish"
 }
 
 func generateCard() string {
@@ -47,4 +70,8 @@ type color string
 
 func (c color) getColor(description string) string {
 	return string(c) + " " + description
+}
+
+func (loc *location) changeLatitude() {
+	loc.lat = 100
 }
