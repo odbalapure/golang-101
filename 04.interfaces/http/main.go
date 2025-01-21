@@ -7,6 +7,8 @@ import (
 	"os"
 )
 
+type logWrite struct{}
+
 func main() {
 	resp, err := http.Get("https://google.com")
 	if err != nil {
@@ -35,12 +37,21 @@ func main() {
 	// fmt.Println(resp)
 
 	// Get an HTML page from response body
-	bs := make([]byte, 99999)
-	resp.Body.Read(bs)
-	fmt.Println(string(bs))
+	// bs := make([]byte, 99999)
+	// resp.Body.Read(bs)
+	// fmt.Println(string(bs))
 
 	// This code returns an HTML page as well
 	// NOTE: Copying data from "resp" to the *stdout*
 	// func Copy(dst Writer, src Reader) (written int64, err error)
-	io.Copy(os.Stdout, resp.Body)
+	// io.Copy(os.Stdout, resp.Body)
+
+	lw := logWrite{}
+	io.Copy(lw, resp.Body)
+}
+
+func (logWrite) Write(bs []byte) (int, error) {
+	fmt.Println(string(bs))
+	fmt.Println("No. of bytes written", len(bs))
+	return len(bs), nil
 }
