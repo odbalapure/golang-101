@@ -1,7 +1,7 @@
 package main
 
 /*
-1. Interfaces are not generic types here like Java, C#
+1. Interfaces are not generic types here like in Java, C#
 2. They are implicit, no need to manually tell that our custom type satisfies some interface
 3. A contract to help us manage types but also remember:
 	- Garbage IN -> Garbage OUT
