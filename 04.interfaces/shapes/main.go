@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"reflect"
 )
 
 type shape interface {
@@ -26,7 +27,7 @@ func (t triangle) getArea() float64 {
 }
 
 func getAllTypesOfArea(s shape) {
-	fmt.Println("getAllTypesOfArea::Area", s.getArea())
+	fmt.Printf("Area of %v is %v\n", reflect.TypeOf(s).Name(), s.getArea())
 }
 
 func main() {
