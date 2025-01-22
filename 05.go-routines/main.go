@@ -81,17 +81,18 @@ func main() {
 		// NOTE: *Sleep* could have been placed inside "checkClink", but the function should only serve its intended purpose.
 		// go checkLink(link, c)
 
-		// Theres a better way to do this by using "function literal"
-		go func() {
-			time.Sleep(5 * time.Second)
-			checkLink(link, c)
-		}()
-
-		// NOTE: This is needed coz the go-routine might read string from a wrong address
-		// go func(l string) {
+		// The variable in the closure/outer-scrop might be used/maintained by some other go-routine
+		// Hence its better to pass the current "link" explictly to the function literal
+		// go func() {
 		// 	time.Sleep(5 * time.Second)
-		// 	checkLink(l, c)
-		// }(link)
+		// 	checkLink(link, c)
+		// }()
+
+		// Here the child go-routine has copied the "link", so there is no way of accessing wrong "link" value
+		go func(l string) {
+			time.Sleep(5 * time.Second)
+			checkLink(l, c)
+		}(link)
 	}
 }
 
