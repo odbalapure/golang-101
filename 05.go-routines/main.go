@@ -76,9 +76,9 @@ func main() {
 	// Alternative syntax
 	for link := range c {
 		// The intention it to make a routine put to sleep & immediately start the next goroutine to fetch this link.
-		// But this makes the "main" routine do something every 5 seconds.
-		// *Sleep* could have been placed inside "checkClink", but the function should only serve its intended purpose.
+		// But this makes the "main" routine do something every 5 seconds and throttle it.
 		// time.Sleep(5 * time.Second)
+		// NOTE: *Sleep* could have been placed inside "checkClink", but the function should only serve its intended purpose.
 		// go checkLink(link, c)
 
 		// Theres a better way to do this by using "function literal"
@@ -88,10 +88,10 @@ func main() {
 		}()
 
 		// NOTE: This is needed coz the go-routine might read string from a wrong address
-		go func(l string) {
-			time.Sleep(5 * time.Second)
-			checkLink(link, c)
-		}(link)
+		// go func(l string) {
+		// 	time.Sleep(5 * time.Second)
+		// 	checkLink(l, c)
+		// }(link)
 	}
 }
 
