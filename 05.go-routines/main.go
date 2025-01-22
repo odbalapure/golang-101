@@ -1,6 +1,6 @@
 package main
 
-// Concurrency: When multiple threads executing code. If one thread blocks, another one is picked up & worked upon
+// Concurrency: When multiple threads executing code. If one thread blocks, another one is picked up & worked upon.
 // Parallelism: Multiple threads executed at the same time. This requires multiple CPUs.
 
 import (
@@ -75,19 +75,19 @@ func main() {
 
 	// Alternative syntax
 	for link := range c {
+		// The intention it to make a routine put to sleep & immediately start the next goroutine to fetch this link.
+		// But this makes the "main" routine do something every 5 seconds.
+		// *Sleep* could have been placed inside "checkClink", but the function should only serve its intended purpose.
 		// time.Sleep(5 * time.Second)
 		// go checkLink(link, c)
-		// Theres a better way to do this by using "function literal"
-		// go func() {
-		// 	time.Sleep(5 * time.Second)
-		// 	go checkLink(link, c)
-		// }()
-		// go func() {
-		// 	time.Sleep(5 * time.Second)
-		// 	checkLink(link, c)
-		// }()
 
-		// NOTE: This is need because the go-routine might read string from a wrong address
+		// Theres a better way to do this by using "function literal"
+		go func() {
+			time.Sleep(5 * time.Second)
+			checkLink(link, c)
+		}()
+
+		// NOTE: This is needed coz the go-routine might read string from a wrong address
 		go func(l string) {
 			time.Sleep(5 * time.Second)
 			checkLink(link, c)
@@ -101,10 +101,10 @@ func checkLink(link string, c chan string) {
 		// Some other part of the code sends a value
 		// This unblocks the goroutine
 		fmt.Println("Link is down", link)
-		c <- link + " might be done..."
+		c <- link
 		return
 	}
 	// This unblocks the goroutine
-	c <- link + " is up & running!"
+	c <- link
 	fmt.Println("Link is up", link)
 }
