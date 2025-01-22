@@ -81,7 +81,7 @@ func main() {
 		// NOTE: *Sleep* could have been placed inside "checkClink", but the function should only serve its intended purpose.
 		// go checkLink(link, c)
 
-		// The variable in the closure/outer-scrop might be used/maintained by some other go-routine
+		// The variable in the closure/outer-scope might be used/maintained by some other go-routine
 		// Hence its better to pass the current "link" explictly to the function literal
 		// go func() {
 		// 	time.Sleep(5 * time.Second)
